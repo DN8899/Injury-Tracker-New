@@ -1,0 +1,214 @@
+:root {
+    --background-color: #2D2D30;
+  }
+  
+  * {
+    margin: 2;
+    padding: 1;
+    box-sizing: border-box;
+    font-family: 'Fira Sans', sans-serif;
+  }
+  
+  body {
+    color: white !important;
+    background-color: var(--background-color);
+    
+  }
+  
+  .App {
+    padding: 32px;
+  }
+  
+  h1 {
+    font-size: 40px;
+    font-weight: 700;
+    margin-bottom: 32px;
+  }
+  
+  h4 {
+    font-size: 18px;
+    font-weight: 400;
+    margin-bottom: 16px;
+    text-transform: uppercase;
+    color: darkgrey;
+  }
+  
+  .injury {
+    position: relative;
+    background-color: rgb(24, 23, 21);
+    padding: 16px;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    transition: 0.5s;
+    cursor: pointer;
+    margin-bottom: 16px;
+  }
+  
+  
+  
+  
+  .injury:hover {
+    opacity: 0.6;
+  }
+  
+  .injury .checkbox {
+    width: 20px;
+    height: 20px;
+    margin-right: 16px;
+    border-radius: 9999px;
+    background-color: var(--background-color);
+    transition: 0.4s;
+  }
+  
+  .injury.is-complete .checkbox {
+    background-color: rgb(0, 246, 246);
+    background-image: linear-gradient(to bottom,rgb(0, 175, 96), rgb(1, 45, 1));
+  }
+  
+  .injury.is-complete .text {
+    text-decoration: line-through;
+  }
+  
+  .injury .text {
+    font-size: 20px;
+    
+  }
+  
+  .injury .symptom {
+    padding: 10px;
+    
+  }
+  
+  .severity {
+    font-weight: bold;
+    padding: 5px;
+    border-radius: 5px;
+    display: inline-block;
+    margin-left: 10px;
+  }
+  
+  .severity-low {
+    color: #fff;
+    background-color: green;
+  }
+  
+  .severity-medium {
+    color: #fff;
+    background-color: orange;
+  }
+  
+  .severity-high {
+    color: #fff;
+    background-color: red;
+  }
+  
+  .injury .delete-injury {
+    position: absolute;
+    top: 50%;
+    right: 16px;
+    transform: translateY(-50%);
+  
+    width: 24px;
+    height: 24px;
+    color: white;
+    background-color: red;
+    border-radius: 50%;
+  
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .addPopup {
+    position: fixed;
+    bottom: 32px;
+    right: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  
+    width: 96px;
+    height: 96px;
+    font-size: 18px;
+    font-weight: 900;
+    border-radius: 999px;
+    border: none;
+    cursor: pointer;
+    text-align: center;
+    background-color: green;
+    
+  }
+  
+  .addPopup:hover {
+    background-color: darkgreen;
+    opacity: 80%;
+  }
+  
+  .popup .content .add-injury-input {
+    display: block;
+    width: 14%;
+    padding: 10px;
+    margin: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    background-color: #f9f9f9;
+    
+  }
+  
+  .popup .content .button {
+    text-align: center;
+    margin: 10px;
+    padding: 10px;
+    border-radius: 9px;
+    background-color: #f9f9f9;
+    border: 1px solid #ccc;
+    color: #2D2D30;
+    width: 150px;
+    font-weight: bold;
+  }
+  
+  .popup .content .add-severity-select {
+    display: block;
+    width: 14%;
+    padding: 10px;
+    margin: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    background-color: #f9f9f9;
+    appearance: none;
+    
+  }
+  
+  .popup .closepop {
+    top: 50%;
+    right: 8px;
+    transform: translateY(+50%);
+    margin: 10px;
+  
+    width: 24px;
+    height: 24px;
+    color: white;
+    background-color: red;
+    border-radius: 50%;
+  
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .add-severity-select .react-select__control, .add-symptoms-select .react-select__control {
+    border-radius: 5px;
+    border-color: #ccc;
+  }
+  
+  .add-severity-select .react-select__control--is-focused, .add-symptoms-select .react-select__control--is-focused {
+    border-color: #007bff;
+    box-shadow: 0 0 0 1px #007bff;
+  }
+  
+  .add-severity-select, .add-symptoms-select {
+    margin: 10px 0;
+    width: 100px;
+  }
+   

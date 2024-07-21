@@ -1,0 +1,68 @@
+/* InjuryHistory.css */
+
+.injury-history {
+    padding: 20px;
+    font-family: Arial, sans-serif;
+  }
+  
+  .injury-item {
+    border: 1px solid #a6ff00;
+    border-radius: 4px;
+    padding: 15px;
+    margin-bottom: 15px;
+    background-color: #11560d;
+  }
+  
+  .injury-item h4 {
+    margin: 0 0 10px;
+    font-size: 18px;
+  }
+  
+  .injury-item .details {
+    margin-bottom: 10px;
+  }
+  
+  .injury-item .details div {
+    margin-bottom: 5px;
+  }
+  
+  .injury-item .history {
+    margin-top: 10px;
+    padding-left: 20px;
+  }
+  
+  .injury-item .history h5 {
+    margin: 10px 0;
+    font-size: 16px;
+  }
+  
+  .injury-item .history p {
+    margin: 5px 0;
+  }
+  
+  .no-history {
+    color: #777;
+  }
+
+  .injury-history .history .history-date {
+    font-weight: bold;
+    padding: 5px;
+    border-radius: 5px;
+    display: inline-block;
+    margin-left: 10px;
+  }
+  .injury-history .history .history-severity {
+    font-weight: bold;
+    padding: 5px;
+    border-radius: 5px;
+    display: inline-block;
+    margin-left: 10px;
+  }
+  .injury-history .history .history-symptoms {
+    font-weight: bold;
+    padding: 5px;
+    border-radius: 5px;
+    display: inline-block;
+    margin-left: 10px;
+  }
+  
