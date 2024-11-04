@@ -69,6 +69,11 @@ function App() {
     );
   };
 
+  /** **************************************
+   * URGENT
+   * Throws a failed fetch error when deleting a value with null severity
+   */
+
   const addInjury = async () => {
     const data = await fetch(API_BASE + "/injury/new", {
       method: "POST",
@@ -200,7 +205,7 @@ function App() {
        */}
       {popupActive ? (
         <div className="popup">
-          <div className="content">
+          <div className="content-todo">
             <h3>Add Injury</h3>
             <input
               type="text"
@@ -224,12 +229,12 @@ function App() {
               onChange={(e) => setSymptoms(e.target.value)}
               value={newSymptoms}
             />
-            <div className="button" onClick={addInjury}>
+            <div className="button-create" onClick={addInjury}>
               Create Injury
             </div>
           </div>
 
-          <div className="closepop" onClick={() => setPopupActive(false)}>
+          <div className="closepopup" onClick={() => setPopupActive(false)}>
             {" "}
             x{" "}
           </div>

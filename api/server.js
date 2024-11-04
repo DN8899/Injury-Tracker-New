@@ -1,6 +1,7 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
+const bcrypt = require("bcrypt");
 const port = 3000;
 
 // Create app using express
@@ -19,6 +20,7 @@ const Injury = require("./models/Tracker");
 const User = require("./models/User");
 
 // Get injuries
+// CHANGE FOR different USERS
 app.get("/injuries", async (req, res) => {
   const injuries = await Injury.find();
 
@@ -145,5 +147,45 @@ app.post("/register/submit", async (req, res) => {
 
 // CREATE A REQUEST TO FETCH AN INJURY FROM AN ID
 /*************************** */
+
+// Login and Registration Routes
+app.post("/login", async (req, res) => {
+  console.log("Whats up");
+  const { username, password } = req.body;
+
+  const user = await User.findOne({ username });
+  console.log("USER ", user);
+
+  if (!user) {
+    return res.status(404).json({ error: "User does not exsits" });
+  }
+
+  const passwordMatch = await bcrypt.compare(password, user.password);
+  if (passwordMatch) {
+    return res.status(200).json({ message: "Login Successful" });
+  } else {
+    return res.status(400).json({ message: "Invalid Credentials" });
+  }
+});
+
+app.post("/register", async (req, res) => {
+  const { username, email, password } = req.body;
+  const saltRounds = 10;
+  const salt = await bcrypt.genSalt(saltRounds);
+  const hashedPassword = await bcrypt.hash(password, salt);
+
+  // Check if the user exists, if they do then send error
+  const existingUser = await User.findOne({ email });
+  if (existingUser)
+    return res.status(400).json({ error: "User already exists" });
+
+  const newUser = new User({ username, email, password: hashedPassword });
+
+  await newUser.save();
+  res.json(newUser);
+  // User.create(req.body)
+  //   .then((user) => res.json(user))
+  //   .catch((err) => res.json(err));
+});
 
 app.listen(port, () => console.log("Server started on port 3000"));

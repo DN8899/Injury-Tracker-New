@@ -2,7 +2,14 @@ import { useState } from "react";
 
 const API_BASE = "http://localhost:3000";
 
-function UpdateInjury({ injury, editInjury }) {
+/*
+ * USAGE: Handles the change for a injury symptom and severity values
+ *
+ * CHANGES:
+ * Update the look of the text boxes
+ */
+
+function UpdateInjury({ injury }) {
   const [severity, setSeverity] = useState(injury.severity);
   const [symptoms, setSymptoms] = useState(injury.symptoms);
 
@@ -43,9 +50,10 @@ function UpdateInjury({ injury, editInjury }) {
         <input
           type="text"
           className="update-symptoms"
+          placeholder="Input Symptoms"
           onChange={(e) => setSymptoms(e.target.value)}
         />
-        <div className="button" onClick={handleUpdate}>
+        <div className="button-update-injury" onClick={handleUpdate}>
           Update Injury
         </div>
       </div>

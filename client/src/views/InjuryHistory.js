@@ -3,6 +3,14 @@ import { formatDate } from "../misc/utils";
 
 const API_BASE = "http://localhost:3000";
 
+/*
+ * View to see the past injuries
+ *
+ * MUST DO
+ * - Clean up the look of the data
+ * - Possibly change the data that is displayed
+ */
+
 function InjuryHistory() {
   const [history, setHistory] = useState([]);
   const [injuries, setInjuries] = useState([]);

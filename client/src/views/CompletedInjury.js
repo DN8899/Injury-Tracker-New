@@ -5,13 +5,15 @@ import { Link } from "react-router-dom";
 const API_BASE = "http://localhost:3000";
 
 /*
- * This is the completed Injuries View.
- * Allows the User to see the injuries that have past.
+ * USAGE:
+ *   This is the completed Injuries View.
+ *   Allows the User to see the injuries that have past.
  *
  *
  * FUTURE IDEAS:
  *   Add ability to click on injury and see the history
  *   for that specific injury
+ *
  */
 
 function CompletedInjury() {

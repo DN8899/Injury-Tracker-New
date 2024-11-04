@@ -1,16 +1,55 @@
 import { FaUserInjured } from "react-icons/fa6";
 import React, { useState } from 'react';
-import { RiLockPasswordFill } from "react-icons/ri";
+import { RiAlarmWarningFill, RiLockPasswordFill } from "react-icons/ri";
 import './LoginFile.css';
+import { useNavigate } from 'react-router-dom';
+
+const API_BASE = "http://localhost:3000";
 
 
-const LoginFile = () => {
+function LoginFile() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [username, setUsername] = useState("")
+    const navigate = useNavigate();
+
+    // Calls Async on the route to check if the user is in the database
+    // Preventdefault to stop from reloading the page
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+        const response = await fetch(
+            API_BASE + "/login",
+            {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    username: username,
+                    password: password
+                }),
+            }
+        )
+        const data = await response;
+
+        if (data.status === 200) {
+            alert("Login successful");
+            navigate("/");
+        }
+        else if (data.status === 404) {
+            alert("User does not exist. Please register");
+            navigate("/register");
+            console.log(data)
+        }
+        else if (data.status === 400) {
+            alert("Password is incorrect");
+        }
+        
+    }
 
 
     return (
-        <body className="login-page">
+        <div className="login-page">
             <div className='wrapper'>
             <form action=''>
                     <h1>Login</h1>
@@ -18,8 +57,8 @@ const LoginFile = () => {
                         <input 
                         type='text' 
                         placeholder='Username' 
-                        value={email} 
-                        onChange={(e) => setEmail(e.target.value)}
+                        value={username} 
+                        onChange={(e) => setUsername(e.target.value)}
                         required 
                         />
                         <FaUserInjured className="icon"/>
@@ -40,15 +79,15 @@ const LoginFile = () => {
                         <a href="#">Forgot Password?</a>
                     </div>
 
-                    <button type='submit'>Login</button>
+                    <button type='submit' onClick={handleSubmit}>Login</button>
 
                     <div className="register-link">
-                        <p>Don't Have an account? <a href="#">Register</a></p>
+                        <p>Don't Have an account? <a href="http://localhost:3001/register">Register</a></p>
                     </div>
 
             </form>
             </div>
-        </body>
+        </div>
     );
 };
 

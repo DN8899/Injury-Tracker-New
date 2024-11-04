@@ -14,6 +14,7 @@ const InjurySchema = new Schema({
   severity: {
     type: String,
     enum: ["low", "medium", "high"],
+    default: "low",
   },
   complete: {
     type: Boolean,

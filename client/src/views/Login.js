@@ -5,6 +5,11 @@ import {
   doCreateUserWithEmailAndPassword,
 } from "../firebase/auth";
 
+/*
+ * Decommissioned
+ * No use for this using other loginform
+ */
+
 function Login() {
   return (
     <div className="login">

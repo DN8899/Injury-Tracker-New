@@ -1,25 +1,32 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+
 
 const API_BASE = "http://localhost:3000";
 
 const PasswordError = () => {
     return (
-        <p className="FieldError">Passwrod should have at least 8 characters</p>
+        <p className="FieldError">Password should have at least 8 characters</p>
     );
 };
 
+/*
+* Need to create a register schema for username, email, password
+* 
+*/
 
 
 function RegisterFile() {
     const [newUsername, setUsername] = useState("");
     const [newEmail, setEmail] = useState("");
     const [newPassword, setPassword] = useState("");
-
+    const navigate = useNavigate();
 
     // Putting new user data into the database
-    const registerUser = async (newUsername, newEmail, newPassword) => {
-        const data = await fetch(
-            API_BASE + "/register/submit", 
+    const registerUser = async (event) => {
+        event.preventDefault();
+        const response = await fetch(
+            API_BASE + "/register", 
             {
             method: "POST",
             headers: {
@@ -30,15 +37,20 @@ function RegisterFile() {
                 email: newEmail,
                 password: newPassword,
             }),
-        }).then((res) => res.json());
+        })
 
-        // setUsername(data.username);
-        // setEmail(data.email);
-        // setPassword(data.password);
+        const data = await response;
 
-        console.log(newUsername);
-        console.log(newPassword);
-        console.log(newEmail);
+        if (data.status === 200) {
+            console.log("Registration successful");
+            navigate("/login");
+        } else if (data.status === 400) {
+            console.log("Registration failed: " , data);
+            alert("Registration failed, User already exists");
+        }
+        else {
+            alert("Something else happened")
+        }
 
 
     };
@@ -81,7 +93,7 @@ function RegisterFile() {
                     />
                 </div>
 
-                <button onClick={ () => registerUser(newUsername, newEmail, newPassword)}>Submit</button>                
+                <button type='submit' onClick={registerUser}>Submit</button>                
             </form>
         </div>
     )
